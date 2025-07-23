@@ -24,7 +24,7 @@ app.get("generateOtp",(req,res)=>{
 app.post("/reset-password",(req,res)=>{
   const {email,otp,newPassword} = req.body;
   if(!email || !otp || !newPassword){
-    return res.status(400).json({msg:"otp,email,password"}) 
+    return res.status(400).json({msg:"otp,email_,password"}) 
   }
 
 if(otpStore[email]===otp){
