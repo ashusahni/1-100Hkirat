@@ -34,7 +34,7 @@ if(otpStore[email]===otp){
 }else{
   res.status(400).json({msg:"invalid otp"})
 }
-})
+})  
 
 
 
