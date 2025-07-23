@@ -14,7 +14,7 @@ app.get("generateOtp",(req,res)=>{
     return res.status(400).json({msg:"email is required"})
   }
   
-  const otp = Math.floor(100000 + Math.random() * 900000).toString(); // generates a 6-digit OTP
+  const otp = Math.floor(100000 + Math.random() * 90000).toString(); // generates a 6-digit OTP
   otpStore[email] = otp;
   console.log(`OTP for ${email}: ${otp}`)
   res.status(200).json({msg:"otp generated and logged"})
@@ -24,7 +24,7 @@ app.get("generateOtp",(req,res)=>{
 app.post("/reset-password",(req,res)=>{
   const {email,otp,newPassword} = req.body;
   if(!email || !otp || !newPassword){
-    return res.status(400).json({msg:"otp,email,password"})
+    return res.status(400).json({msg:"otp,email,password"}) 
   }
 
 if(otpStore[email]===otp){
