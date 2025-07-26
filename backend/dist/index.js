@@ -22,9 +22,10 @@ app.post('/generate-otp', (req, res) => {
 });
 // Endpoint to reset password
 app.post('/reset-password', (req, res) => {
-    const email = req.body.email;
-    const otp = req.body.otp;
-    const newPassword = req.body;
+    var _a;
+    const email = (_a = req.body.email) === null || _a === void 0 ? void 0 : _a.trim().toLowerCase();
+    const otp = String(req.body.otp).trim(); // ensure it's a string
+    const newPassword = req.body.newPassword;
     if (!email || !otp || !newPassword) {
         return res.status(400).json({ message: "Email, OTP, and new password are required" });
     }
