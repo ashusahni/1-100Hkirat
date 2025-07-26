@@ -23,13 +23,19 @@ app.post('/generate-otp', (req, res) => {
 
 // Endpoint to reset password
 app.post('/reset-password', (req, res) => {
-  const { email, otp, newPassword } = req.body;
+  const email = req.body.email
+  const otp = req.body.otp
+  const newPassword = req.body
+
   if (!email || !otp || !newPassword) {
     return res.status(400).json({ message: "Email, OTP, and new password are required" });
   }
+
+  console.log(`Stored OTP: ${otpStore[email]}, Provided OTP: ${otp}`);
+
   if (otpStore[email] === otp) {
     console.log(`Password for ${email} has been reset to: ${newPassword}`);
-    delete otpStore[email]; // Clear the OTP after use
+    delete otpStore[email];
     res.status(200).json({ message: "Password has been reset successfully" });
   } else {
     res.status(401).json({ message: "Invalid OTP" });
