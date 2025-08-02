@@ -4,7 +4,7 @@ interface Game{
     id: string,
     whitePlayer: string,
     blackPlayer: string,
-    moves: string
+    moves: string[]
 }
 
-export const game = [];
+export const game: Game[] = [];
