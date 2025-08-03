@@ -1,8 +1,7 @@
-import { game } from "./store";
 
 
 export const startLogger =()=>{
     setInterval(() => {
-        console.log(game)
+        console.log()
     }, 5000);
 }
