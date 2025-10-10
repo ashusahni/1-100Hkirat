@@ -15,7 +15,7 @@ function add(a, b) {
 app.post('/rpc', (req, res) => {
     const { jsonrpc, method, params, id } = req.body;
 
-    if (jsonrpc !== '2.0' || !method || !Array.isArray(params)) {
+    if (jsonrpc !== '2.0' || !method ||  !Array.isArray(params)) {
         res.status(400).json({ jsonrpc: '2.0', error: { code: -32600, message: 'Invalid Request' }, id });
         return;
     }
