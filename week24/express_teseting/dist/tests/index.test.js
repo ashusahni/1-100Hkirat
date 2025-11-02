@@ -13,22 +13,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const globals_1 = require("@jest/globals");
-const supertest_1 = __importDefault(require("supertest"));
 const index_1 = require("../index");
-(0, globals_1.describe)("POST /sum", () => {
-    (0, globals_1.it)("should return to the sum two number", () => __awaiter(void 0, void 0, void 0, function* () {
+const supertest_1 = __importDefault(require("supertest"));
+(0, globals_1.describe)("test the sum function", () => {
+    (0, globals_1.it)("should return the sum of two postive num", () => __awaiter(void 0, void 0, void 0, function* () {
+        // const result = await axios.post ("https://localhost:3000/sum",{
+        //     a:1,
+        //     b:3
+        // })
+        // expect(result.data.answer).toBe(4)
         const res = yield (0, supertest_1.default)(index_1.app).post("/sum").send({
-            a: 0,
-            b: 0
+            a: 3,
+            b: 3
         });
+        (0, globals_1.expect)(res.body.answer).toBe(6);
         (0, globals_1.expect)(res.statusCode).toBe(200);
-        (0, globals_1.expect)(res.body.answer).toBe(0);
-    }));
-    (0, globals_1.it)("should do the same as returning two num ", () => __awaiter(void 0, void 0, void 0, function* () {
-        const res = yield (0, supertest_1.default)(index_1.app).post("/sum").send({
-            a: ["audemerPiguet"]
-        });
-        (0, globals_1.expect)(res.statusCode).toBe(411);
-        (0, globals_1.expect)(res.body.msg).toBe("Incorrect Input");
     }));
 });

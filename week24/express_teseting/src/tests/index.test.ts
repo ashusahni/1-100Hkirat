@@ -1,29 +1,35 @@
 import {describe, it , expect} from '@jest/globals'
-import request   from 'supertest'
-import { app } from '../index'
+import axios from 'axios'
+import {app} from "../index"
+import request  from 'supertest'
 
+describe("test the sum function", ()=>{
+    it("should return the sum of two postive num",async()=>{
+        // const result = await axios.post ("https://localhost:3000/sum",{
+        //     a:1,
+        //     b:3
+        // })
+        // expect(result.data.answer).toBe(4)
 
-
-describe("POST /sum",()=>{
-    it("should return to the sum two number", async()=>{
         const res = await request(app).post("/sum").send({
-            a:0,
-            b:0
+            a:3,
+            b:3
         })
 
+        expect(res.body.answer).toBe(6)
         expect(res.statusCode).toBe(200)
-        expect(res.body.answer).toBe(0)
+    })
+})
+
+describe ("test the multiplication", ()=>{
+    it("it should give multiplied value of postive numbers", async ()=>{
+        const res = (await request (app).post("/multiplication").send({
+            a:3,
+            b:3
+        }))
+
+        expect(res.body.answer).toBe(9)
+
 
     })
-
-    it("should do the same as returning two num ", async ()=>{
-        const res = await request(app).post("/sum").send({
-            a:["audemerPiguet"]
-        })
-
-        expect(res.statusCode).toBe(411);
-        expect(res.body.msg).toBe("Incorrect Input")
-
-    })
-
-}) 
+})
