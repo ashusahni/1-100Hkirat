@@ -1,7 +1,17 @@
-import {describe, it , expect} from '@jest/globals'
+import {describe, it , expect, vi} from 'vitest'
 import axios from 'axios'
 import {app} from "../index"
 import request  from 'supertest'
+
+
+vi.mock("../db.ts",()=>{
+    return {
+        PrismaClient: {
+            create: vi.fn()
+        }
+    }
+})
+
 
 describe("test the sum function", ()=>{
     it("should return the sum of two postive num",async()=>{
